@@ -19,3 +19,11 @@ resource "azurerm_storage_account" "this" {
   account_replication_type = "LRS"
   tags                     = var.tags_common
 }
+
+resource "azurerm_storage_container" "this" {
+  for_each = var.containers
+
+  name                  = each.key
+  storage_account_name  = azurerm_storage_account.this.name
+  container_access_type = each.value.container_access_type
+}

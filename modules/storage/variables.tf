@@ -11,3 +11,11 @@ variable "location" {
 variable "tags_common" {
   type = map(string)
 }
+
+variable "containers" {
+  type = map(object({
+    container_access_type = string
+  }))
+  description = "The containers to create in the storage account"
+  default     = {}
+}
